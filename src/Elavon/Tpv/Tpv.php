@@ -39,8 +39,8 @@ class Tpv
      * @var array
      */
     private $environments = array(
-        'test' => 'https://sis-t.redsys.es:25443/sis',
-        'real' => 'https://sis.redsys.es/sis'
+        'test' => 'https://hpp.prueba.santanderelavontpvvirtual.es/pay',
+        'real' => 'https://hpp.santanderelavontpvvirtual.es/pay'
     );
 
     /**
