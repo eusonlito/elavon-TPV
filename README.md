@@ -35,7 +35,7 @@ $TPV->setFormHiddens(array(
     'AMOUNT' => '568,25'
 ));
 
-# Imprimimos el pedido el formulario y redirigimos a la TPV
+# Rellenamos el formulario de pedido y redirigimos a la TPV
 
 echo '<form action="'.$TPV->getFormAction().'" method="post">'.$TPV->getFormHiddens().'</form>';
 
