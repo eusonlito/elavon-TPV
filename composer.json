@@ -1,0 +1,24 @@
+{
+    "name": "elavon/tpv",
+    "keywords": ["tpv", "elavon", "santander"],
+    "description": "Package to connect with Elavon TPV (Santander)",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lito",
+            "email": "lito@eordes.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elavon\\Tpv\\": "src/Elavon/Tpv/"
+        }
+    },
+    "minimum-stability": "stable"
+}
