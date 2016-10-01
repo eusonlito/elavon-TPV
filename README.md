@@ -40,6 +40,15 @@ $TPV->setFormHiddens(array(
 echo '<form action="'.$TPV->getFormAction().'" method="post">'.$TPV->getFormHiddens().'</form>';
 
 die('<script>document.forms[0].submit();</script>');
+
+# O bien si quieres el formulario completo pero no quieres redirección
+
+echo $TPV->getFormFull();
+
+# O bien si quieres el formulario completo y que realice la redirección al momento
+
+die($TPV->getFormFullWithRedirect());
+
 ```
 
 Para realizar el control de los pagos, la TPV se comunicará con nosotros a través de la url configurada en el panel del propio banco.
