@@ -156,24 +156,56 @@ class TpvTest extends PHPUnit_Framework_TestCase
         } catch (Exception $e) {
             $this->assertContains('AMOUNT', $e->getMessage());
         }
+    }
 
+    /**
+     * @depends testInstance
+     */
+    public function testFormHtmlInputs($tpv)
+    {
         $tpv->setFormHiddens([
             'ORDER_ID' => '10',
             'AMOUNT' => '10',
         ]);
 
-        $fields = $tpv->getFormHiddens();
-
-        $this->assertContains('<input', $fields);
-        $this->assertContains('MERCHANT_ID', $fields);
-        $this->assertContains('ORDER_ID', $fields);
-        $this->assertContains('ACCOUNT', $fields);
-        $this->assertContains('CURRENCY', $fields);
-        $this->assertContains('AMOUNT', $fields);
-        $this->assertContains('TIMESTAMP', $fields);
-        $this->assertContains('SHA1HASH', $fields);
-        $this->assertContains('AUTO_SETTLE_FLAG', $fields);
+        $this->helperHtmlInputTest($tpv->getFormHiddens());
 
         return $tpv;
+    }
+
+    /**
+     * @depends testFormHtmlInputs
+     */
+    public function testFormHtmlForm($tpv)
+    {
+        $html = $tpv->getFormFull();
+
+        $this->assertContains('<form', $html);
+        $this->assertContains('method="post"', $html);
+
+        $this->helperHtmlInputTest($html);
+
+        $this->assertContains('<script', $tpv->getFormRedirect());
+
+        $html = $tpv->getFormFullWithRedirect();
+
+        $this->assertContains('<form', $html);
+        $this->assertContains('method="post"', $html);
+        $this->assertContains('<script', $html);
+
+        $this->helperHtmlInputTest($html);
+    }
+
+    private function helperHtmlInputTest($html)
+    {
+        $this->assertContains('<input', $html);
+        $this->assertContains('MERCHANT_ID', $html);
+        $this->assertContains('ORDER_ID', $html);
+        $this->assertContains('ACCOUNT', $html);
+        $this->assertContains('CURRENCY', $html);
+        $this->assertContains('AMOUNT', $html);
+        $this->assertContains('TIMESTAMP', $html);
+        $this->assertContains('SHA1HASH', $html);
+        $this->assertContains('AUTO_SETTLE_FLAG', $html);
     }
 }

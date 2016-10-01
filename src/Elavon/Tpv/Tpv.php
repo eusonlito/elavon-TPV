@@ -136,6 +136,55 @@ class Tpv
     }
 
     /**
+     * Respuesta con el formulario completo
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    public function getFormFull($id = null)
+    {
+        return '<form id="'.$this->getFormId($id).'" action="'.$this->getFormAction().'" method="post">'
+            .$this->getFormHiddens().'</form>';
+    }
+
+    /**
+     * Respuesta con el formulario completo y la redirección por javascript
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    public function getFormFullWithRedirect($id = null)
+    {
+        return $this->getFormFull($id).$this->getFormRedirect($id);
+    }
+
+    /**
+     * Respuesta con el javascript que realiza la redirección del formulario
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    public function getFormRedirect($id = null)
+    {
+        return '<script>document.getElementById("'.$this->getFormId($id).'").submit();</script>';
+    }
+
+    /**
+     * Devuelve un identificador de formulario
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    private function getFormId($id)
+    {
+        return $id ?: 'elavon-tpv';
+    }
+
+    /**
      * Validación y procesado del pedido
      *
      * @param array $order
