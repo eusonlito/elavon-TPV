@@ -35,7 +35,7 @@ $TPV->setFormHiddens(array(
     'AMOUNT' => '568,25'
 ));
 
-# Rellenamos el formulario de pedido y redirigimos a la TPV
+# Rellenamos el formulario de pedido y redirigimos al TPV
 
 echo '<form action="'.$TPV->getFormAction().'" method="post">'.$TPV->getFormHiddens().'</form>';
 
@@ -45,7 +45,7 @@ die('<script>document.forms[0].submit();</script>');
 
 echo $TPV->getFormFull();
 
-# O bien si quieres el formulario completo y que realice la redirección al momento
+# O bien si quieres el formulario completo y que realice la redirección al TPV (igual que la primera opción)
 
 die($TPV->getFormFullWithRedirect());
 
