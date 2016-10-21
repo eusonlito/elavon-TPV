@@ -17,7 +17,7 @@ class Tpv
      *
      * @var array
      */
-    private $configInputs = array('MERCHANT_ID', 'ACCOUNT', 'CURRENCY', 'AUTO_SETTLE_FLAG');
+    private $configInputs = array('MERCHANT_ID', 'ACCOUNT', 'CURRENCY', 'MERCHANT_RESPONSE_URL', 'AUTO_SETTLE_FLAG');
 
     /**
      * Variables de pedido obligatorias
@@ -196,7 +196,9 @@ class Tpv
         $this->checkRequired($order, $this->orderRequired);
 
         foreach ($this->configInputs as $name) {
-            $order[$name] = $this->config[$name];
+            if (isset($this->config[$name])) {
+                $order[$name] = $this->config[$name];
+            }
         }
 
         $order['TIMESTAMP'] = date('YmdHis');
